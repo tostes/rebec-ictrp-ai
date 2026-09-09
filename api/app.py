@@ -254,7 +254,7 @@ def user_admin(command,parametro):
         
     if command == "senha_emergencia":
 
-        query = "update auth_user set password = 'sha1$8d8f2$135f45e2cee7560635d2123efe191deadba93bed' where id = %s" % user_id
+        query = "update auth_user set password = 'tstetetet' where id = %s" % user_id
         print(query)
         #executa query
         emergency_hash = os.getenv("REBEC_EMERGENCY_PASSWORD_HASH", "")

@@ -111,7 +111,8 @@ def api_options():
                 detail={
                     "message": str(exc),
                     "type": type(exc).__name__,
-                    "traceback": traceback.format_exc(),
+                    "traceback":
+                        traceback.format_exc(),
                 },
             )
 
@@ -137,8 +138,15 @@ def api_search(payload: SearchRequest):
 
         _cleanup_search_sessions()
 
-        full_results = result.pop("_all_results_internal", [])
-        all_trial_ids = result.pop("all_trial_ids", [])
+        full_results = result.pop(
+            "_all_results_internal",
+            []
+        )
+
+        all_trial_ids = result.pop(
+            "all_trial_ids",
+            []
+        )
 
         search_id = uuid.uuid4().hex
 
@@ -150,11 +158,26 @@ def api_search(payload: SearchRequest):
             "filters": _model_dump(payload.filters),
             "language": payload.language,
             "page_size": payload.page_size,
-            "total_results": result.get("total_results", len(full_results)),
-            "primary_count": result.get("primary_count", 0),
-            "related_count": result.get("related_count", 0),
-            "threshold_score": result.get("threshold_score", 0),
-            "db_stats": result.get("db_stats", {}),
+            "total_results": result.get(
+                "total_results",
+                len(full_results),
+            ),
+            "primary_count": result.get(
+                "primary_count",
+                0,
+            ),
+            "related_count": result.get(
+                "related_count",
+                0,
+            ),
+            "threshold_score": result.get(
+                "threshold_score",
+                0,
+            ),
+            "db_stats": result.get(
+                "db_stats",
+                {},
+            ),
         }
 
         result["search_id"] = search_id
@@ -199,7 +222,10 @@ def api_search(payload: SearchRequest):
             )
             raise HTTPException(
                 status_code=500,
-                detail={"message": str(exc), "debug_log": debug_log},
+                detail={
+                    "message": str(exc),
+                    "debug_log": debug_log,
+                },
             )
         raise HTTPException(status_code=500, detail=str(exc))
 
@@ -210,15 +236,24 @@ def api_search_page(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=20, ge=1, le=100),
 ):
-    """Paginação rápida usando o resultado já calculado em memória."""
+    """
+    Paginação rápida: usa o resultado já calculado em memória.
+
+    Não chama LLM, não executa novamente SQL de busca e não refaz ranking.
+    """
     _cleanup_search_sessions()
+
     session = SEARCH_SESSIONS.get(search_id)
 
     if not session:
-        raise HTTPException(status_code=404, detail="Search session expired or not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Search session expired or not found",
+        )
 
     results = session.get("results", [])
     total = len(results)
+
     offset = (page - 1) * page_size
     page_results = results[offset:offset + page_size]
 
@@ -227,9 +262,18 @@ def api_search_page(
         "page": page,
         "page_size": page_size,
         "total_results": total,
-        "primary_count": session.get("primary_count", 0),
-        "related_count": session.get("related_count", 0),
-        "threshold_score": session.get("threshold_score", 0),
+        "primary_count": session.get(
+            "primary_count",
+            0,
+        ),
+        "related_count": session.get(
+            "related_count",
+            0,
+        ),
+        "threshold_score": session.get(
+            "threshold_score",
+            0,
+        ),
         "db_stats": {
             **session.get("db_stats", {}),
             "pagination_source": "memory_cache",
@@ -247,7 +291,9 @@ def api_search_page(
                 "LLM called: false\n"
                 "SQL search executed: false\n"
                 "ranking executed: false\n"
-            ) if DEBUG_MODE else "",
+            )
+            if DEBUG_MODE
+            else "",
         },
     }
 
@@ -270,13 +316,20 @@ def api_trial_xml(trial_id: str):
     try:
         xml = get_trial_xml(trial_id)
         if not xml:
-            raise HTTPException(status_code=404, detail="XML not found. Populate ictrp_trial_xml first.")
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    "XML not found. Populate ictrp_trial_xml first."
+                ),
+            )
 
         body = '<?xml version="1.0" encoding="UTF-8"?>\n' + xml
         return Response(
             content=body,
             media_type="application/xml; charset=utf-8",
-            headers={"Content-Disposition": f'inline; filename="{trial_id}.xml"'},
+            headers={
+                "Content-Disposition": f'inline; filename="{trial_id}.xml"'
+            },
         )
     except HTTPException:
         raise
@@ -289,27 +342,51 @@ def api_export(payload: ExportRequest):
     _cleanup_search_sessions()
     session = SEARCH_SESSIONS.get(payload.search_id)
     if not session:
-        raise HTTPException(status_code=404, detail="Search session expired or not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Search session expired or not found",
+        )
 
     if payload.scope == "all":
         trial_ids = session["trial_ids"]
     else:
         allowed = set(session["trial_ids"])
-        trial_ids = [x for x in payload.trial_ids if x in allowed]
+        trial_ids = [
+            x for x in payload.trial_ids
+            if x in allowed
+        ]
 
     if not trial_ids:
-        raise HTTPException(status_code=400, detail="No trials selected for export")
+        raise HTTPException(
+            status_code=400,
+            detail="No trials selected for export",
+        )
 
     rows = get_trials_xml(trial_ids)
     if not rows:
-        raise HTTPException(status_code=404, detail="No XML payloads found. Populate ictrp_trial_xml first.")
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                "No XML payloads found. Populate ictrp_trial_xml first."
+            ),
+        )
 
     buffer = io.BytesIO()
-    with zipfile.ZipFile(buffer, mode="w", compression=zipfile.ZIP_DEFLATED) as zf:
+    with zipfile.ZipFile(
+        buffer,
+        mode="w",
+        compression=zipfile.ZIP_DEFLATED,
+    ) as zf:
         for row in rows:
             trial_id = row["trial_id"]
-            body = '<?xml version="1.0" encoding="UTF-8"?>\n' + row["trial_xml"]
-            zf.writestr(f"{trial_id}.xml", body)
+            body = (
+                '<?xml version="1.0" encoding="UTF-8"?>\n'
+                + row["trial_xml"]
+            )
+            zf.writestr(
+                f"{trial_id}.xml",
+                body,
+            )
 
         manifest = {
             "search_id": payload.search_id,
@@ -317,7 +394,14 @@ def api_export(payload: ExportRequest):
             "exported": len(rows),
             "trial_ids": [x["trial_id"] for x in rows],
         }
-        zf.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2))
+        zf.writestr(
+            "manifest.json",
+            json.dumps(
+                manifest,
+                ensure_ascii=False,
+                indent=2,
+            ),
+        )
 
     buffer.seek(0)
     filename = f"rebec_ai_search_{payload.search_id[:8]}.zip"
@@ -325,5 +409,7 @@ def api_export(payload: ExportRequest):
     return StreamingResponse(
         buffer,
         media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"'
+        },
     )

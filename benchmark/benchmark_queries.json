@@ -1,0 +1,554 @@
+[
+  {
+    "id": "pt01",
+    "language": "pt",
+    "query": "cancer",
+    "filters": {},
+    "expected": {
+      "condition": "cancer"
+    }
+  },
+  {
+    "id": "pt02",
+    "language": "pt",
+    "query": "câncer de mama",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer"
+    }
+  },
+  {
+    "id": "pt03",
+    "language": "pt",
+    "query": "estudos de câncer de mama recrutando",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer",
+      "recruitment_status": "Recruiting"
+    }
+  },
+  {
+    "id": "pt04",
+    "language": "pt",
+    "query": "ensaios de câncer de mama em mulheres",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer",
+      "gender": "F"
+    }
+  },
+  {
+    "id": "pt05",
+    "language": "pt",
+    "query": "estudos intervencionais de câncer de pulmão",
+    "filters": {},
+    "expected": {
+      "condition": "lung cancer",
+      "study_type": "Intervention"
+    }
+  },
+  {
+    "id": "pt06",
+    "language": "pt",
+    "query": "estudos observacionais sobre diabetes no Brasil",
+    "filters": {},
+    "expected": {
+      "condition": "diabetes",
+      "study_type": "Observational",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "pt07",
+    "language": "pt",
+    "query": "estudos usando exercícios físicos para idosos com problemas de equilíbrio",
+    "filters": {},
+    "expected": {
+      "condition": "balance problems",
+      "intervention": "physical exercise",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "pt08",
+    "language": "pt",
+    "query": "tratamento com metformina para diabetes tipo 2",
+    "filters": {},
+    "expected": {
+      "condition": "type 2 diabetes",
+      "intervention": "metformin"
+    }
+  },
+  {
+    "id": "pt09",
+    "language": "pt",
+    "query": "fisioterapia para pacientes idosos após AVC",
+    "filters": {},
+    "expected": {
+      "condition": "stroke",
+      "intervention": "physiotherapy",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "pt10",
+    "language": "pt",
+    "query": "ensaios fase 3 recrutando para câncer de próstata",
+    "filters": {},
+    "expected": {
+      "condition": "prostate cancer",
+      "phase": "3",
+      "recruitment_status": "Recruiting"
+    }
+  },
+  {
+    "id": "pt11",
+    "language": "pt",
+    "query": "estudos de hipertensão em idosos",
+    "filters": {},
+    "expected": {
+      "condition": "hypertension",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "pt12",
+    "language": "pt",
+    "query": "ensaios de asma em crianças",
+    "filters": {},
+    "expected": {
+      "condition": "asthma"
+    }
+  },
+  {
+    "id": "pt13",
+    "language": "pt",
+    "query": "imunoterapia para melanoma",
+    "filters": {},
+    "expected": {
+      "condition": "melanoma",
+      "intervention": "immunotherapy"
+    }
+  },
+  {
+    "id": "pt14",
+    "language": "pt",
+    "query": "estudos recrutando no Brasil sobre doença de Alzheimer",
+    "filters": {},
+    "expected": {
+      "condition": "Alzheimer disease",
+      "recruitment_status": "Recruiting",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "pt15",
+    "language": "pt",
+    "query": "exercício terapêutico para osteoartrite do joelho",
+    "filters": {},
+    "expected": {
+      "condition": "knee osteoarthritis",
+      "intervention": "therapeutic exercise"
+    }
+  },
+  {
+    "id": "en01",
+    "language": "en",
+    "query": "breast cancer trials",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer"
+    }
+  },
+  {
+    "id": "en02",
+    "language": "en",
+    "query": "recruiting phase 3 breast cancer trials for women",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer",
+      "recruitment_status": "Recruiting",
+      "phase": "3",
+      "gender": "F"
+    }
+  },
+  {
+    "id": "en03",
+    "language": "en",
+    "query": "observational studies of diabetes in Brazil",
+    "filters": {},
+    "expected": {
+      "condition": "diabetes",
+      "study_type": "Observational",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "en04",
+    "language": "en",
+    "query": "physical exercise for older adults with balance problems",
+    "filters": {},
+    "expected": {
+      "condition": "balance problems",
+      "intervention": "physical exercise",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "en05",
+    "language": "en",
+    "query": "metformin for type 2 diabetes",
+    "filters": {},
+    "expected": {
+      "condition": "type 2 diabetes",
+      "intervention": "metformin"
+    }
+  },
+  {
+    "id": "en06",
+    "language": "en",
+    "query": "physiotherapy after stroke in older adults",
+    "filters": {},
+    "expected": {
+      "condition": "stroke",
+      "intervention": "physiotherapy",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "en07",
+    "language": "en",
+    "query": "immunotherapy trials for melanoma",
+    "filters": {},
+    "expected": {
+      "condition": "melanoma",
+      "intervention": "immunotherapy"
+    }
+  },
+  {
+    "id": "en08",
+    "language": "en",
+    "query": "recruiting Alzheimer disease studies in Brazil",
+    "filters": {},
+    "expected": {
+      "condition": "Alzheimer disease",
+      "recruitment_status": "Recruiting",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "en09",
+    "language": "en",
+    "query": "therapeutic exercise for knee osteoarthritis",
+    "filters": {},
+    "expected": {
+      "condition": "knee osteoarthritis",
+      "intervention": "therapeutic exercise"
+    }
+  },
+  {
+    "id": "en10",
+    "language": "en",
+    "query": "hypertension studies in older adults",
+    "filters": {},
+    "expected": {
+      "condition": "hypertension",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "es01",
+    "language": "es",
+    "query": "estudios de cáncer de mama",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer"
+    }
+  },
+  {
+    "id": "es02",
+    "language": "es",
+    "query": "ensayos de cáncer de mama reclutando mujeres",
+    "filters": {},
+    "expected": {
+      "condition": "breast cancer",
+      "recruitment_status": "Recruiting",
+      "gender": "F"
+    }
+  },
+  {
+    "id": "es03",
+    "language": "es",
+    "query": "estudios observacionales de diabetes en Brasil",
+    "filters": {},
+    "expected": {
+      "condition": "diabetes",
+      "study_type": "Observational",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "es04",
+    "language": "es",
+    "query": "ejercicio físico para adultos mayores con problemas de equilibrio",
+    "filters": {},
+    "expected": {
+      "condition": "balance problems",
+      "intervention": "physical exercise",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "es05",
+    "language": "es",
+    "query": "metformina para diabetes tipo 2",
+    "filters": {},
+    "expected": {
+      "condition": "type 2 diabetes",
+      "intervention": "metformin"
+    }
+  },
+  {
+    "id": "es06",
+    "language": "es",
+    "query": "fisioterapia después de un accidente cerebrovascular en adultos mayores",
+    "filters": {},
+    "expected": {
+      "condition": "stroke",
+      "intervention": "physiotherapy",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "es07",
+    "language": "es",
+    "query": "inmunoterapia para melanoma",
+    "filters": {},
+    "expected": {
+      "condition": "melanoma",
+      "intervention": "immunotherapy"
+    }
+  },
+  {
+    "id": "es08",
+    "language": "es",
+    "query": "estudios de Alzheimer reclutando en Brasil",
+    "filters": {},
+    "expected": {
+      "condition": "Alzheimer disease",
+      "recruitment_status": "Recruiting",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "es09",
+    "language": "es",
+    "query": "ejercicio terapéutico para osteoartritis de rodilla",
+    "filters": {},
+    "expected": {
+      "condition": "knee osteoarthritis",
+      "intervention": "therapeutic exercise"
+    }
+  },
+  {
+    "id": "es10",
+    "language": "es",
+    "query": "estudios de hipertensión en adultos mayores",
+    "filters": {},
+    "expected": {
+      "condition": "hypertension",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "adv01",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "study_type": "Intervention"
+    },
+    "expected": {
+      "study_type": "Intervention"
+    }
+  },
+  {
+    "id": "adv02",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "study_type": "Observational"
+    },
+    "expected": {
+      "study_type": "Observational"
+    }
+  },
+  {
+    "id": "adv03",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "recruitment_status": "Recruiting"
+    },
+    "expected": {
+      "recruitment_status": "Recruiting"
+    }
+  },
+  {
+    "id": "adv04",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "phase": "3"
+    },
+    "expected": {
+      "phase": "3"
+    }
+  },
+  {
+    "id": "adv05",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "gender": "F"
+    },
+    "expected": {
+      "gender": "F"
+    }
+  },
+  {
+    "id": "adv06",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "country": "Brazil"
+    },
+    "expected": {
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "adv07",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "study_type": "Intervention",
+      "recruitment_status": "Recruiting"
+    },
+    "expected": {
+      "study_type": "Intervention",
+      "recruitment_status": "Recruiting"
+    }
+  },
+  {
+    "id": "adv08",
+    "language": "pt",
+    "query": "",
+    "filters": {
+      "study_type": "Intervention",
+      "phase": "3",
+      "gender": "F"
+    },
+    "expected": {
+      "study_type": "Intervention",
+      "phase": "3",
+      "gender": "F"
+    }
+  },
+  {
+    "id": "mix01",
+    "language": "pt",
+    "query": "câncer de mama",
+    "filters": {
+      "study_type": "Intervention"
+    },
+    "expected": {
+      "condition": "breast cancer",
+      "study_type": "Intervention"
+    }
+  },
+  {
+    "id": "mix02",
+    "language": "pt",
+    "query": "câncer de mama",
+    "filters": {
+      "study_type": "Intervention",
+      "recruitment_status": "Recruiting",
+      "gender": "F"
+    },
+    "expected": {
+      "condition": "breast cancer",
+      "study_type": "Intervention",
+      "recruitment_status": "Recruiting",
+      "gender": "F"
+    }
+  },
+  {
+    "id": "mix03",
+    "language": "pt",
+    "query": "diabetes",
+    "filters": {
+      "study_type": "Observational",
+      "country": "Brazil"
+    },
+    "expected": {
+      "condition": "diabetes",
+      "study_type": "Observational",
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "mix04",
+    "language": "en",
+    "query": "physical exercise for balance problems",
+    "filters": {
+      "age_min_years": 60
+    },
+    "expected": {
+      "condition": "balance problems",
+      "intervention": "physical exercise",
+      "age_min_years": 60
+    }
+  },
+  {
+    "id": "mix05",
+    "language": "es",
+    "query": "melanoma",
+    "filters": {
+      "study_type": "Intervention",
+      "recruitment_status": "Recruiting"
+    },
+    "expected": {
+      "condition": "melanoma",
+      "study_type": "Intervention",
+      "recruitment_status": "Recruiting"
+    }
+  },
+  {
+    "id": "mix06",
+    "language": "pt",
+    "query": "hipertensão",
+    "filters": {
+      "age_min_years": 60,
+      "country": "Brazil"
+    },
+    "expected": {
+      "condition": "hypertension",
+      "age_min_years": 60,
+      "country": "Brazil"
+    }
+  },
+  {
+    "id": "mix07",
+    "language": "pt",
+    "query": "Alzheimer",
+    "filters": {
+      "study_type": "Observational",
+      "gender": "F"
+    },
+    "expected": {
+      "condition": "Alzheimer disease",
+      "study_type": "Observational",
+      "gender": "F"
+    }
+  }
+]

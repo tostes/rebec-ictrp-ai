@@ -1,3 +1,4 @@
-# Additional dependencies for the ReBEC AI Search module.
+# Dependências adicionais do módulo ReBEC AI Search.
+# Instale dentro do MESMO ambiente virtual já usado pelo rebecAPI.
 mysql-connector-python>=8.0,<10
 requests>=2.28,<3

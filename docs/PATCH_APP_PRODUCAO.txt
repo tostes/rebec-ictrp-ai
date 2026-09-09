@@ -1,0 +1,13 @@
+Quando os testes terminarem, você NÃO precisa usar app_ai_test.py.
+
+No app.py de produção, depois de configurar as variáveis REBEC_AI_MYSQL_* ou
+adaptar rebec_ai/settings.py à sua infraestrutura, adicione:
+
+    from rebec_ai.router import router as ai_search_router
+
+    app.include_router(
+        ai_search_router,
+        prefix="/ai-search",
+    )
+
+Para o ambiente atual, app_ai_test.py já faz isso sem modificar app.py.

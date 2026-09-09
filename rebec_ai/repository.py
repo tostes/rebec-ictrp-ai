@@ -206,7 +206,8 @@ def get_options() -> Dict[str, List[str]]:
 
         return {
             "study_type": study_type,
-            "recruitment_status": recruitment_status,
+            "recruitment_status":
+                recruitment_status,
             "phase": phase,
             "gender": gender,
             "country": country,

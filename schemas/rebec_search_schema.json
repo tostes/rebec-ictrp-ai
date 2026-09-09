@@ -1,0 +1,191 @@
+{
+  "version": "0.1",
+  "project": "ReBEC Intelligent Search",
+  "description": "Canonical search schema for mapping multilingual natural-language queries to ReBEC clinical-trial filters.",
+  "output_contract": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "condition": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "intervention": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "recruitment_status": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "recruiting",
+          "not-yet-recruiting",
+          "active-not-recruiting",
+          "completed",
+          "suspended",
+          "withdrawn",
+          "terminated"
+        ]
+      },
+      "phase": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "gender": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "male",
+          "female",
+          "all"
+        ]
+      },
+      "age_min_years": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "minimum": 0
+      },
+      "age_max_years": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "minimum": 0
+      },
+      "country": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "sponsor": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "study_type": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "registration_date_from": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "registration_date_to": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "condition",
+      "intervention",
+      "title",
+      "recruitment_status",
+      "phase",
+      "gender",
+      "age_min_years",
+      "age_max_years",
+      "country",
+      "sponsor",
+      "study_type",
+      "registration_date_from",
+      "registration_date_to"
+    ]
+  },
+  "rebec_sources": {
+    "condition": [
+      "hc_freetext",
+      "translations[].hc_freetext",
+      "hc_code[].text",
+      "hc_code[].translations[].text",
+      "hc_keyword[].text",
+      "hc_keyword[].translations[].text"
+    ],
+    "intervention": [
+      "i_freetext",
+      "translations[].i_freetext",
+      "intervention_keyword[].text",
+      "intervention_keyword[].translations[].text"
+    ],
+    "title": [
+      "public_title",
+      "scientific_title",
+      "translations[].public_title",
+      "translations[].scientific_title"
+    ],
+    "recruitment_status": [
+      "recruitment_status.label"
+    ],
+    "phase": [
+      "phase.label"
+    ],
+    "gender": [
+      "gender"
+    ],
+    "age_min_years": [
+      "agemin_value",
+      "agemin_unit"
+    ],
+    "age_max_years": [
+      "agemax_value",
+      "agemax_unit"
+    ],
+    "country": [
+      "recruitment_country[].description",
+      "recruitment_country[].translations[].description"
+    ],
+    "sponsor": [
+      "primary_sponsor.name",
+      "secondary_sponsors[].institution.name",
+      "support_sources[].institution.name"
+    ],
+    "study_type": [
+      "study_type",
+      "is_observational",
+      "study_design"
+    ],
+    "registration_date_from": [
+      "date_registration"
+    ],
+    "registration_date_to": [
+      "date_registration"
+    ]
+  },
+  "rules": [
+    "Never infer a filter that the user did not explicitly request.",
+    "Disease/condition concepts map to condition, not to generic text.",
+    "Treatment, drug, procedure, exercise, device or behavioral approach maps to intervention.",
+    "A title-specific request maps to title.",
+    "Keep common clinical acronyms such as HIV, AIDS, HPV and COPD when useful.",
+    "Normalize controlled filters to canonical values.",
+    "Return null for all unspecified fields.",
+    "Do not answer medical questions; only parse search intent."
+  ]
+}

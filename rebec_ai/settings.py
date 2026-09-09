@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Configuration for the ReBEC AI Search module."""
+"""Configuração isolada do módulo ReBEC AI Search.
+
+APP_MODE é deliberadamente hardcoded, conforme solicitado.
+As credenciais do banco são recebidas por variáveis de ambiente que o
+app_ai_test.py preenche automaticamente a partir do config já existente
+no app.py atual do rebecAPI.
+"""
 import os
 
-# DEBUG -> exposes detailed diagnostics in the UI
-# PROD  -> hides prompts, SQL, raw model output and internal logs
+# ============================================================
+# FLAG HARDCODE
+# ============================================================
+# DEBUG -> expõe log detalhado na interface
+# PROD  -> não expõe prompt, SQL, resposta bruta do LLM ou logs internos
 APP_MODE = "DEBUG"
 
 MYSQL_CONFIG = {

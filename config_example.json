@@ -1,0 +1,21 @@
+{
+  "app_mode": "DEV",
+  "mysql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "your_mysql_database",
+    "user": "your_mysql_user",
+    "password": "your_mysql_password"
+  },
+  "llm": {
+    "url": "http://127.0.0.1:8080/v1/chat/completions",
+    "model": "ggml-org/Qwen3.5-0.8B-GGUF:Q4_0"
+  },
+  "openai": {
+    "api_key": ""
+  },
+  "legacy_emergency_password": {
+    "password": "",
+    "password_hash": ""
+  }
+}
